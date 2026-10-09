@@ -1,16 +1,17 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Syed Anas Hussaini | Portfolio</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;700;900&display=swap');
 
         :root {
             --bg-color: #050814;
             --text-color: #e2e8f0;
             --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
             --card-bg: rgba(255, 255, 255, 0.03);
             --card-border: rgba(255, 255, 255, 0.1);
         }
@@ -20,12 +21,40 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Top Reading Progress Bar */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(to right, #3b82f6, #60a5fa, #93c5fd);
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.1s ease-out;
+        }
+
+        /* Custom Glow Cursor */
+        #custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease, width 0.2s, height 0.2s, background 0.2s;
+            z-index: 9999;
+            box-shadow: 0 0 15px var(--accent);
         }
 
         /* 3D Particle Canvas Background */
@@ -40,15 +69,17 @@
         }
 
         header {
-            padding: 2rem 5%;
+            padding: 1.5rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(5, 8, 20, 0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(5, 8, 20, 0.85);
+            backdrop-filter: blur(12px);
             position: fixed;
             width: 100%;
+            top: 0;
             z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .logo {
@@ -56,35 +87,79 @@
             font-weight: 900;
             letter-spacing: -1px;
         }
-        
         .logo span { color: var(--accent); }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
 
         nav a {
             color: var(--text-color);
             text-decoration: none;
-            margin-left: 2rem;
             font-size: 0.9rem;
             transition: color 0.3s;
         }
 
         nav a:hover { color: var(--accent); }
 
+        .action-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            color: var(--text-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.3s;
+        }
+
+        .action-btn:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: var(--accent);
+        }
+
         section {
-            padding: 8rem 5% 4rem;
+            padding: 7rem 5% 4rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .hero {
-            height: 100vh;
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: flex-start;
         }
 
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #10b981;
+        }
+
         .hero h1 {
-            font-size: 4.5rem;
+            font-size: clamp(2.8rem, 6vw, 4.8rem);
             line-height: 1.1;
             margin-bottom: 1rem;
             background: linear-gradient(to right, #fff, #3b82f6);
@@ -95,18 +170,107 @@
         .hero p {
             font-size: 1.2rem;
             color: #94a3b8;
-            max-width: 600px;
+            max-width: 650px;
             margin-bottom: 2rem;
             line-height: 1.6;
         }
 
-        /* 3D Tilt Card Grid */
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 1.8rem;
+            background: var(--accent);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            box-shadow: 0 0 25px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: none;
+        }
+
+        /* Stats Bar */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+            width: 100%;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-card .number {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-card .label {
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+
+        /* Filter Controls */
+        .filter-bar {
+            display: flex;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--card-border);
+            color: #94a3b8;
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        /* 3D Tilt Grid */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
-            perspective: 1000px; /* Enables 3D space */
+            perspective: 1000px;
         }
 
         .card {
@@ -115,24 +279,19 @@
             padding: 2rem;
             border-radius: 16px;
             backdrop-filter: blur(10px);
-            transition: transform 0.1s ease, box-shadow 0.1s ease;
+            transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.3s ease;
             transform-style: preserve-3d;
-            cursor: pointer;
         }
 
         .card:hover {
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(59, 130, 246, 0.2);
-        }
-
-        /* Elements inside card pop out during 3D tilt */
-        .card h3, .card p, .card .tag {
-            transform: translateZ(30px); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 20px var(--accent-glow);
         }
 
         .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
             color: #fff;
+            transform: translateZ(25px);
         }
 
         .card p {
@@ -140,6 +299,11 @@
             font-size: 0.95rem;
             line-height: 1.6;
             margin-bottom: 1.5rem;
+            transform: translateZ(20px);
+        }
+
+        .tag-container {
+            transform: translateZ(20px);
         }
 
         .tag {
@@ -149,25 +313,26 @@
             color: var(--accent);
             border-radius: 20px;
             font-size: 0.8rem;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
+            margin-right: 0.4rem;
+            margin-bottom: 0.4rem;
         }
 
-        /* Credentials Section */
+        /* Education & Credentials */
         .credentials {
             display: flex;
             gap: 2rem;
             flex-wrap: wrap;
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
 
         .cred-box {
             flex: 1;
             min-width: 300px;
-            background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+            background: linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
             padding: 2rem;
             border-radius: 16px;
             border-left: 4px solid var(--accent);
+            border-top: 1px solid var(--card-border);
         }
 
         .cred-box h4 {
@@ -178,48 +343,189 @@
             gap: 10px;
         }
 
-        .cred-logo {
-            font-weight: 900;
-            font-size: 1.5rem;
-            color: white;
-        }
-        
+        .cred-logo { font-weight: 900; font-size: 1.4rem; }
         .oracle-red { color: #f80000; }
         .harvard-crimson { color: #A51C30; }
 
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: var(--accent);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 700;
-            transition: 0.3s;
+        /* Contact Section */
+        .contact-container {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
         }
 
-        .btn:hover { background: #2563eb; box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
+        .contact-info p {
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
 
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            padding: 0.8rem 1.2rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+
+        .copy-btn {
+            background: var(--accent);
+            border: none;
+            color: #fff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        /* Terminal CLI Modal */
+        #terminal-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .terminal-window {
+            width: 90%;
+            max-width: 650px;
+            background: #090d1f;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            box-shadow: 0 0 40px rgba(59, 130, 246, 0.2);
+            overflow: hidden;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .terminal-header {
+            background: #111827;
+            padding: 0.8rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .red { background: #ef4444; }
+        .yellow { background: #f59e0b; }
+        .green { background: #10b981; }
+
+        .terminal-body {
+            padding: 1.5rem;
+            height: 320px;
+            overflow-y: auto;
+            color: #60a5fa;
+            font-size: 0.9rem;
+        }
+
+        .terminal-output p {
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .terminal-input-line {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 1rem;
+        }
+
+        .terminal-input-line input {
+            background: transparent;
+            border: none;
+            color: #fff;
+            outline: none;
+            width: 100%;
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* Toast Notifications */
+        #toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent);
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            display: none;
+            z-index: 10001;
+        }
     </style>
 </head>
 <body>
 
+    <div id="scroll-progress"></div>
+    <div id="custom-cursor"></div>
     <canvas id="particle-canvas"></canvas>
+    <div id="toast">Notification</div>
 
     <header>
         <div class="logo">S A <span>H.</span></div>
         <nav>
             <a href="#about">About</a>
             <a href="#projects">Projects</a>
-            <a href="#experience">Experience</a>
+            <a href="#experience">Credentials</a>
+            <a href="#contact">Contact</a>
+            <button class="action-btn" id="sound-toggle" title="Toggle Sound FX">🔊 SFX On</button>
+            <button class="action-btn" id="open-terminal">⌨️ Ctrl+K</button>
         </nav>
     </header>
 
-    <section class="hero">
-        <p>WELCOME TO THE FUTURE OF DIGITAL</p>
+    <section class="hero" id="about">
+        <div class="hero-badge">
+            <span class="status-dot"></span> Available for AI & Cloud Architecture Projects
+        </div>
         <h1>Hi, I'm Syed Anas Hussaini</h1>
-        <p>Tech Founder, AI Developer & Web Architect. Bridging the gap between intelligent cloud infrastructure and stunning digital experiences.</p>
-        <a href="#projects" class="btn">Explore My Universe</a>
+        <p>Tech Founder, AI Developer & Web Architect. Building next-gen voice assistants, scalable cloud systems, and high-impact digital ventures.</p>
+
+        <div class="hero-buttons">
+            <a href="#projects" class="btn">Explore Projects ➔</a>
+            <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="number" data-target="68">0</div>
+                <div class="label">Languages Supported (Tossey AI)</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" data-target="2">0</div>
+                <div class="label">Cloud & CS Certifications</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" data-target="99">0</div>
+                <div class="label">% Cloud Pipeline Reliability</div>
+            </div>
+        </div>
     </section>
 
     <section id="experience">
@@ -228,92 +534,238 @@
             <div class="cred-box">
                 <h4><span class="cred-logo harvard-crimson">HARVARD</span> University</h4>
                 <p><strong>CS50 Computer Science</strong></p>
-                <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 10px;">Mastering programming fundamentals, data structures, C, and Python through rigorous algorithmic problem-solving.</p>
+                <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 10px;">Mastering C, Python, web stack fundamentals, and data structures through rigorous algorithmic computation.</p>
             </div>
             <div class="cred-box">
                 <h4><span class="cred-logo oracle-red">ORACLE</span> Cloud Infrastructure</h4>
                 <p><strong>OCI AI Associate (Batch of 2025 - C45)</strong></p>
-                <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 10px;">Certified in deploying, managing, and architecting intelligent AI/ML models on scalable cloud environments.</p>
+                <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 10px;">Architecting, deploying, and managing scalable machine learning & AI workflows on Oracle Cloud.</p>
             </div>
         </div>
     </section>
 
     <section id="projects">
         <h2>Engineering & Ventures</h2>
+        
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="ai">AI & ML</button>
+            <button class="filter-btn" data-filter="cloud">Cloud & Infra</button>
+            <button class="filter-btn" data-filter="business">Ventures & Media</button>
+        </div>
+
         <div class="grid">
-            
-            <!-- Project 1 -->
-            <div class="card tilt-card">
+            <div class="card tilt-card" data-category="ai">
                 <h3>Tossey (AI Voice Assistant)</h3>
-                <p>An advanced, voice-controlled AI assistant powered by a custom thinking model and Emotion Model Adv 3. Built with 3rd-generation voice recognition capable of processing and translating 68+ languages seamlessly.</p>
-                <div>
+                <p>An advanced, voice-controlled AI assistant powered by a custom thinking model and Emotion Model Adv 3. Features 3rd-gen voice control with 68+ language translation capabilities.</p>
+                <div class="tag-container">
                     <span class="tag">AI/ML</span>
                     <span class="tag">Voice Gen 3</span>
                     <span class="tag">NLP</span>
                 </div>
             </div>
 
-            <!-- Project 2 -->
-            <div class="card tilt-card">
+            <div class="card tilt-card" data-category="cloud">
                 <h3>Segmental AI Unit 9</h3>
-                <p>Developed a root base infrastructure for Segmental AI Unit 9 during my work with Oracle C45 (Batch of 2025). Focused on optimizing data pipelines and cloud resource allocation.</p>
-                <div>
+                <p>Engineered the foundational base infrastructure for Segmental AI Unit 9 during work with Oracle C45 (Batch of 2025), focusing on optimized data pipelines and cloud compute efficiency.</p>
+                <div class="tag-container">
                     <span class="tag">Oracle Cloud</span>
                     <span class="tag">Infrastructure</span>
                     <span class="tag">Segmental AI</span>
                 </div>
             </div>
 
-            <!-- Project 3 -->
-            <div class="card tilt-card">
+            <div class="card tilt-card" data-category="business">
                 <h3>Founder @ MortalSMM</h3>
-                <p>Founder and lead architect of mortalsmm.in, a digital growth platform providing scalable Social Media Marketing (SMM) solutions, panel architecture, and domain management.</p>
-                <div>
+                <p>Founder and lead architect of mortalsmm.in, delivering scalable digital growth infrastructure, SMM panel architectures, and custom domain integrations.</p>
+                <div class="tag-container">
                     <span class="tag">Entrepreneurship</span>
                     <span class="tag">Web Architecture</span>
                     <span class="tag">SMM</span>
                 </div>
             </div>
 
-            <!-- Project 4 -->
-            <div class="card tilt-card">
+            <div class="card tilt-card" data-category="business">
                 <h3>@mr_marco.07</h3>
-                <p>The face and creative director of the @mr_marco.07 digital brand on Instagram. Focusing on content creation, brand growth, and digital audience engagement.</p>
-                <div>
+                <p>Creator and brand director of the @mr_marco.07 digital platform on Instagram, leading creative content strategy and audience engagement.</p>
+                <div class="tag-container">
                     <span class="tag">Digital Brand</span>
                     <span class="tag">Content Strategy</span>
                     <span class="tag">Media</span>
                 </div>
             </div>
-
         </div>
     </section>
 
+    <section id="contact">
+        <h2>Let's Collaborate</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <p>Have an ambitious AI project, cloud infrastructure challenge, or partnership in mind? Feel free to reach out directly.</p>
+                <div class="contact-methods">
+                    <div class="contact-item">
+                        <span>🌐 Venture: <strong>mortalsmm.in</strong></span>
+                        <button class="copy-btn" onclick="copyText('mortalsmm.in')">Copy</button>
+                    </div>
+                    <div class="contact-item">
+                        <span>📸 Instagram: <strong>@mr_marco.07</strong></span>
+                        <button class="copy-btn" onclick="copyText('@mr_marco.07')">Copy</button>
+                    </div>
+                    <div class="contact-item">
+                        <span>🐙 GitHub: <strong>Arch-Anas-7</strong></span>
+                        <button class="copy-btn" onclick="copyText('Arch-Anas-7')">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terminal Modal CLI -->
+    <div id="terminal-modal">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-dots">
+                    <span class="dot red" id="close-terminal" style="cursor:pointer;"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <span style="font-size:0.8rem; color:#94a3b8;">syed-anas-cli v1.0</span>
+            </div>
+            <div class="terminal-body" id="terminal-body">
+                <div class="terminal-output" id="terminal-output">
+                    <p>Welcome to Syed Anas Hussaini's Terminal CLI.</p>
+                    <p>Type <span style="color:#3b82f6;">'help'</span> to view available commands.</p>
+                </div>
+                <div class="terminal-input-line">
+                    <span style="color:#10b981;">visitor@anas-portfolio:~\$</span>
+                    <input type="text" id="terminal-input" autofocus autocomplete="off">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // --- 1. 3D TILT EFFECT FOR CARDS ---
-        const cards = document.querySelectorAll('.tilt-card');
-        
-        cards.forEach(card => {
+        // --- 1. SOUND FX GENERATOR (Web Audio API) ---
+        let soundEnabled = true;
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playBeep(freq = 600, duration = 0.05) {
+            if (!soundEnabled) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.value = freq;
+                gain.gain.setValueAtTime(0.02, audioCtx.currentTime);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e){}
+        }
+
+        document.getElementById('sound-toggle').addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            document.getElementById('sound-toggle').innerText = soundEnabled ? '🔊 SFX On' : '🔇 SFX Off';
+            showToast(soundEnabled ? 'Sound Effects Enabled' : 'Sound Effects Muted');
+        });
+
+        document.querySelectorAll('a, button, .card').forEach(el => {
+            el.addEventListener('mouseenter', () => playBeep(800, 0.03));
+        });
+
+        // --- 2. CUSTOM CURSOR & SCROLL PROGRESS ---
+        const cursor = document.getElementById('custom-cursor');
+        const progressBar = document.getElementById('scroll-progress');
+
+        window.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        window.addEventListener('scroll', () => {
+            const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPos = (window.scrollY / totalScroll) * 100;
+            progressBar.style.width = scrollPos + '%';
+        });
+
+        // --- 3. TOAST NOTIFICATIONS ---
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 2500);
+        }
+
+        function copyText(text) {
+            navigator.clipboard.writeText(text);
+            playBeep(1000, 0.1);
+            showToast('Copied: ' + text);
+        }
+
+        // --- 4. PROJECT CATEGORY FILTER ---
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('#projects .card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                playBeep(700, 0.05);
+
+                const filter = btn.getAttribute('data-filter');
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // --- 5. ANIMATED NUMBERS COUNTER ---
+        let animated = false;
+        window.addEventListener('scroll', () => {
+            const statSection = document.querySelector('.stats-grid');
+            if (!statSection) return;
+            const pos = statSection.getBoundingClientRect().top;
+            if (pos < window.innerHeight && !animated) {
+                animated = true;
+                document.querySelectorAll('.number').forEach(num => {
+                    const target = +num.getAttribute('data-target');
+                    let count = 0;
+                    const inc = target / 30;
+                    const update = () => {
+                        count += inc;
+                        if (count < target) {
+                            num.innerText = Math.ceil(count) + (target === 99 ? '%' : '+');
+                            setTimeout(update, 40);
+                        } else {
+                            num.innerText = target + (target === 99 ? '%' : '+');
+                        }
+                    };
+                    update();
+                });
+            }
+        });
+
+        // --- 6. 3D TILT EFFECT ---
+        document.querySelectorAll('.tilt-card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left; // x position within the element
-                const y = e.clientY - rect.top;  // y position within the element
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = ((y - centerY) / centerY) * -15; // Max rotation 15deg
-                const rotateY = ((x - centerX) / centerX) * 15;
-                
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const rotateX = ((y - rect.height/2) / (rect.height/2)) * -12;
+                const rotateY = ((x - rect.width/2) / (rect.width/2)) * 12;
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
             });
-            
             card.addEventListener('mouseleave', () => {
                 card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
             });
         });
 
-        // --- 2. 3D PARTICLE NETWORK BACKGROUND ---
+        // --- 7. PARTICLE BACKGROUND CANVAS ---
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let width = canvas.width = window.innerWidth;
@@ -329,13 +781,12 @@
             constructor() {
                 this.x = Math.random() * width;
                 this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 1;
-                this.vy = (Math.random() - 0.5) * 1;
+                this.vx = (Math.random() - 0.5) * 0.8;
+                this.vy = (Math.random() - 0.5) * 0.8;
                 this.size = Math.random() * 2;
             }
             update() {
-                this.x += this.vx;
-                this.y += this.vy;
+                this.x += this.vx; this.y += this.vy;
                 if (this.x < 0 || this.x > width) this.vx *= -1;
                 if (this.y < 0 || this.y > height) this.vy *= -1;
             }
@@ -346,26 +797,19 @@
                 ctx.fill();
             }
         }
-
-        for (let i = 0; i < 80; i++) particles.push(new Particle());
+        for (let i = 0; i < 70; i++) particles.push(new Particle());
 
         function animate() {
             ctx.clearRect(0, 0, width, height);
-            
             for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-                
-                // Draw connecting lines to simulate a 3D network
+                particles[i].update(); particles[i].draw();
                 for (let j = i; j < particles.length; j++) {
                     const dx = particles[i].x - particles[j].x;
                     const dy = particles[i].y - particles[j].y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
-                    
-                    if (dist < 120) {
+                    if (dist < 110) {
                         ctx.beginPath();
-                        ctx.strokeStyle = `rgba(59, 130, 246, ${0.2 - dist/600})`;
-                        ctx.lineWidth = 1;
+                        ctx.strokeStyle = `rgba(59, 130, 246, ${0.18 - dist/600})`;
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
                         ctx.stroke();
@@ -375,6 +819,69 @@
             requestAnimationFrame(animate);
         }
         animate();
+
+        // --- 8. TERMINAL CLI MODAL ---
+        const termModal = document.getElementById('terminal-modal');
+        const openTerm = document.getElementById('open-terminal');
+        const closeTerm = document.getElementById('close-terminal');
+        const termInput = document.getElementById('terminal-input');
+        const termOutput = document.getElementById('terminal-output');
+
+        function toggleTerminal() {
+            const isVisible = termModal.style.display === 'flex';
+            termModal.style.display = isVisible ? 'none' : 'flex';
+            if (!isVisible) termInput.focus();
+        }
+
+        openTerm.addEventListener('click', toggleTerminal);
+        closeTerm.addEventListener('click', toggleTerminal);
+
+        window.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                toggleTerminal();
+            }
+        });
+
+        termInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const cmd = termInput.value.trim().toLowerCase();
+                termInput.value = '';
+                playBeep(900, 0.05);
+
+                const line = document.createElement('p');
+                line.innerHTML = `<span style="color:#10b981;">visitor@anas-portfolio:~$</span> ${cmd}`;
+                termOutput.appendChild(line);
+
+                let resp = '';
+                if (cmd === 'help') {
+                    resp = 'Available commands: <br>• <strong>skills</strong> - List tech stack<br>• <strong>projects</strong> - View active projects<br>• <strong>contact</strong> - Show contact handles<br>• <strong>clear</strong> - Clear screen<br>• <strong>matrix</strong> - Enter green glow mode';
+                } else if (cmd === 'skills') {
+                    resp = 'Languages & Frameworks: C, Python, JavaScript, HTML5/CSS3<br>Cloud & Infra: Oracle Cloud Infrastructure (OCI), Segmental AI, GitHub Pages';
+                } else if (cmd === 'projects') {
+                    resp = '1. Tossey AI Voice Assistant (68+ Languages)<br>2. Segmental AI Unit 9 (OCI)<br>3. MortalSMM Venture (mortalsmm.in)<br>4. @mr_marco.07 Digital Brand';
+                } else if (cmd === 'contact') {
+                    resp = 'Venture: mortalsmm.in | Instagram: @mr_marco.07 | GitHub: Arch-Anas-7';
+                } else if (cmd === 'clear') {
+                    termOutput.innerHTML = '';
+                    return;
+                } else if (cmd === 'matrix') {
+                    document.documentElement.style.setProperty('--accent', '#10b981');
+                    document.documentElement.style.setProperty('--accent-glow', 'rgba(16, 185, 129, 0.4)');
+                    resp = 'Matrix mode activated! Accent accent switched to Neon Green.';
+                } else {
+                    resp = `Command not recognized: '${cmd}'. Type 'help' for options.`;
+                }
+
+                const outP = document.createElement('p');
+                outP.style.color = '#94a3b8';
+                outP.innerHTML = resp;
+                termOutput.appendChild(outP);
+
+                const body = document.getElementById('terminal-body');
+                body.scrollTop = body.scrollHeight;
+            }
+        });
     </script>
 </body>
 </html>
