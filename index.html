@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Syed Anas Hussaini | Portfolio</title>
+    <title>Mr Anas // Bruce Wayne — Neural Core OS</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;600;700;900&display=swap');
 
         :root {
-            --bg-color: #050814;
+            --bg-color: #020408;
             --text-color: #e2e8f0;
-            --accent: #3b82f6;
-            --accent-glow: rgba(59, 130, 246, 0.4);
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.1);
+            --accent: #00f0ff;
+            --accent-glow: rgba(0, 240, 255, 0.4);
+            --card-bg: rgba(7, 13, 24, 0.75);
+            --card-border: rgba(0, 240, 255, 0.2);
         }
 
         * {
@@ -37,7 +37,7 @@
             top: 0;
             left: 0;
             height: 3px;
-            background: linear-gradient(to right, #3b82f6, #60a5fa, #93c5fd);
+            background: linear-gradient(to right, #00f0ff, #0088ff, #3b82f6);
             width: 0%;
             z-index: 1000;
             transition: width 0.1s ease-out;
@@ -69,43 +69,45 @@
         }
 
         header {
-            padding: 1.5rem 5%;
+            padding: 1.2rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(5, 8, 20, 0.85);
+            background: rgba(2, 4, 8, 0.85);
             backdrop-filter: blur(12px);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
             font-weight: 900;
-            letter-spacing: -1px;
+            letter-spacing: 1px;
+            color: #fff;
         }
-        .logo span { color: var(--accent); }
+        .logo span { color: var(--accent); text-shadow: 0 0 10px var(--accent); }
 
         nav {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: 1.2rem;
         }
 
         nav a {
             color: var(--text-color);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: color 0.3s;
         }
 
         nav a:hover { color: var(--accent); }
 
         .action-btn {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(0, 240, 255, 0.05);
             border: 1px solid var(--card-border);
             color: var(--text-color);
             padding: 0.4rem 0.8rem;
@@ -119,8 +121,9 @@
         }
 
         .action-btn:hover {
-            background: rgba(59, 130, 246, 0.2);
+            background: rgba(0, 240, 255, 0.2);
             border-color: var(--accent);
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
         }
 
         section {
@@ -142,8 +145,8 @@
             align-items: center;
             gap: 8px;
             padding: 6px 14px;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.3);
             border-radius: 30px;
             font-size: 0.85rem;
             color: var(--accent);
@@ -153,24 +156,25 @@
         .status-dot {
             width: 8px;
             height: 8px;
-            background: #10b981;
+            background: #00ff66;
             border-radius: 50%;
-            box-shadow: 0 0 10px #10b981;
+            box-shadow: 0 0 10px #00ff66;
         }
 
         .hero h1 {
-            font-size: clamp(2.8rem, 6vw, 4.8rem);
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.4rem, 5vw, 4.2rem);
             line-height: 1.1;
             margin-bottom: 1rem;
-            background: linear-gradient(to right, #fff, #3b82f6);
+            background: linear-gradient(to right, #fff, var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #94a3b8;
-            max-width: 650px;
+            max-width: 700px;
             margin-bottom: 2rem;
             line-height: 1.6;
         }
@@ -187,7 +191,7 @@
             gap: 0.5rem;
             padding: 0.9rem 1.8rem;
             background: var(--accent);
-            color: #fff;
+            color: #020408;
             text-decoration: none;
             border-radius: 30px;
             font-weight: 700;
@@ -197,17 +201,18 @@
         }
 
         .btn:hover {
-            background: #2563eb;
+            background: #00c2cc;
             box-shadow: 0 0 25px var(--accent-glow);
         }
 
         .btn-secondary {
             background: rgba(255, 255, 255, 0.05);
+            color: #fff;
             border: 1px solid var(--card-border);
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 240, 255, 0.1);
             box-shadow: none;
         }
 
@@ -233,6 +238,7 @@
             font-weight: 900;
             color: #fff;
             margin-bottom: 0.3rem;
+            font-family: 'Orbitron', sans-serif;
         }
 
         .stat-card .label {
@@ -261,14 +267,15 @@
 
         .filter-btn.active, .filter-btn:hover {
             background: var(--accent);
-            color: #fff;
+            color: #020408;
             border-color: var(--accent);
+            font-weight: 700;
         }
 
-        /* 3D Tilt Grid */
+        /* 3D Tilt Grid & Cards */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             perspective: 1000px;
         }
@@ -281,14 +288,42 @@
             backdrop-filter: blur(10px);
             transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.3s ease;
             transform-style: preserve-3d;
+            position: relative;
         }
 
         .card:hover {
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 20px var(--accent-glow);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 25px var(--accent-glow);
+            border-color: var(--accent);
+        }
+
+        /* Verified Badge Hover Effect */
+        .verified-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 136, 255, 0.15);
+            border: 1px solid #0088ff;
+            color: #0088ff;
+            font-size: 0.68rem;
+            padding: 3px 8px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            opacity: 0.4;
+            transform: scale(0.95);
+            transition: 0.3s;
+        }
+
+        .card:hover .verified-badge {
+            opacity: 1;
+            transform: scale(1);
+            box-shadow: 0 0 12px rgba(0, 136, 255, 0.5);
         }
 
         .card h3 {
-            font-size: 1.4rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
             margin-bottom: 0.8rem;
             color: #fff;
             transform: translateZ(25px);
@@ -296,7 +331,7 @@
 
         .card p {
             color: #94a3b8;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             line-height: 1.6;
             margin-bottom: 1.5rem;
             transform: translateZ(20px);
@@ -304,20 +339,22 @@
 
         .tag-container {
             transform: translateZ(20px);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
         }
 
         .tag {
             display: inline-block;
             padding: 0.3rem 0.8rem;
-            background: rgba(59, 130, 246, 0.1);
+            background: rgba(0, 240, 255, 0.08);
             color: var(--accent);
+            border: 1px solid rgba(0, 240, 255, 0.2);
             border-radius: 20px;
-            font-size: 0.8rem;
-            margin-right: 0.4rem;
-            margin-bottom: 0.4rem;
+            font-size: 0.75rem;
         }
 
-        /* Education & Credentials */
+        /* Credentials Section */
         .credentials {
             display: flex;
             gap: 2rem;
@@ -328,22 +365,25 @@
         .cred-box {
             flex: 1;
             min-width: 300px;
-            background: linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+            background: var(--card-bg);
             padding: 2rem;
             border-radius: 16px;
             border-left: 4px solid var(--accent);
             border-top: 1px solid var(--card-border);
+            position: relative;
         }
 
         .cred-box h4 {
-            font-size: 1.2rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
             gap: 10px;
+            color: #fff;
         }
 
-        .cred-logo { font-weight: 900; font-size: 1.4rem; }
+        .cred-logo { font-weight: 900; font-size: 1.3rem; }
         .oracle-red { color: #f80000; }
         .harvard-crimson { color: #A51C30; }
 
@@ -384,12 +424,14 @@
         .copy-btn {
             background: var(--accent);
             border: none;
-            color: #fff;
+            color: #020408;
+            font-weight: 700;
             padding: 0.3rem 0.8rem;
             border-radius: 8px;
             font-size: 0.75rem;
             cursor: pointer;
         }
+        .copy-btn:hover { background: #00c2cc; }
 
         /* Terminal CLI Modal */
         #terminal-modal {
@@ -398,7 +440,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(10px);
             z-index: 10000;
             display: none;
@@ -408,22 +450,22 @@
 
         .terminal-window {
             width: 90%;
-            max-width: 650px;
-            background: #090d1f;
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            max-width: 680px;
+            background: #070d18;
+            border: 1px solid var(--accent);
             border-radius: 12px;
-            box-shadow: 0 0 40px rgba(59, 130, 246, 0.2);
+            box-shadow: 0 0 50px rgba(0, 240, 255, 0.25);
             overflow: hidden;
             font-family: 'Fira Code', monospace;
         }
 
         .terminal-header {
-            background: #111827;
+            background: #0f1c30;
             padding: 0.8rem 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--card-border);
         }
 
         .terminal-dots {
@@ -438,9 +480,9 @@
 
         .terminal-body {
             padding: 1.5rem;
-            height: 320px;
+            height: 350px;
             overflow-y: auto;
-            color: #60a5fa;
+            color: var(--accent);
             font-size: 0.9rem;
         }
 
@@ -471,11 +513,12 @@
             bottom: 30px;
             right: 30px;
             background: var(--accent);
-            color: #fff;
+            color: #020408;
+            font-weight: 700;
             padding: 0.8rem 1.5rem;
             border-radius: 10px;
             font-size: 0.9rem;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
             display: none;
             z-index: 10001;
         }
@@ -489,11 +532,11 @@
     <div id="toast">Notification</div>
 
     <header>
-        <div class="logo">S A <span>H.</span></div>
+        <div class="logo">ANAS <span>// BRUCE</span></div>
         <nav>
             <a href="#about">About</a>
             <a href="#projects">Projects</a>
-            <a href="#experience">Credentials</a>
+            <a href="#credentials">Credentials</a>
             <a href="#contact">Contact</a>
             <button class="action-btn" id="sound-toggle" title="Toggle Sound FX">🔊 SFX On</button>
             <button class="action-btn" id="open-terminal">⌨️ Ctrl+K</button>
@@ -502,118 +545,135 @@
 
     <section class="hero" id="about">
         <div class="hero-badge">
-            <span class="status-dot"></span> Available for AI & Cloud Architecture Projects
+            <span class="status-dot"></span> 17yo Builder & Tech Entrepreneur (Hyderabad)
         </div>
-        <h1>Hi, I'm Syed Anas Hussaini</h1>
-        <p>Tech Founder, AI Developer & Web Architect. Building next-gen voice assistants, scalable cloud systems, and high-impact digital ventures.</p>
+        <h1>Hi, I'm Mr Anas (Bruce Wayne)</h1>
+        <p>Technology enthusiast, builder, and aspiring entrepreneur. Passionate about AI, robotics, browser automation, and building physical & digital products that bridge creativity with practical engineering.</p>
 
         <div class="hero-buttons">
-            <a href="#projects" class="btn">Explore Projects ➔</a>
+            <a href="#projects" class="btn">Explore Systems ➔</a>
             <a href="#contact" class="btn btn-secondary">Get In Touch</a>
         </div>
 
         <div class="stats-grid">
             <div class="stat-card">
-                <div class="number" data-target="68">0</div>
-                <div class="label">Languages Supported (Tossey AI)</div>
+                <div class="number" data-target="17">0</div>
+                <div class="label">Years Old & Building</div>
             </div>
             <div class="stat-card">
                 <div class="number" data-target="2">0</div>
-                <div class="label">Cloud & CS Certifications</div>
+                <div class="label">Major Certifications (Oracle & Harvard)</div>
             </div>
             <div class="stat-card">
-                <div class="number" data-target="99">0</div>
-                <div class="label">% Cloud Pipeline Reliability</div>
+                <div class="number" data-target="100">0</div>
+                <div class="label">% Autonomous Learning</div>
             </div>
         </div>
     </section>
 
-    <section id="experience">
-        <h2>Education & Cloud Credentials</h2>
+    <section id="credentials">
+        <h2>Milestones & Credentials</h2>
         <div class="credentials">
             <div class="cred-box">
-                <h4><span class="cred-logo harvard-crimson">HARVARD</span> University</h4>
-                <p><strong>CS50 Computer Science</strong></p>
-                <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 10px;">Mastering C, Python, web stack fundamentals, and data structures through rigorous algorithmic computation.</p>
+                <div class="verified-badge">✓ Verified & Completed</div>
+                <h4><span class="cred-logo harvard-crimson">HARVARD</span> CS50x</h4>
+                <p><strong>Age 17 Milestone</strong></p>
+                <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 10px;">Completed Harvard University's rigorous introduction to computer science, building a profound foundation in algorithms, C, and Python.</p>
             </div>
             <div class="cred-box">
-                <h4><span class="cred-logo oracle-red">ORACLE</span> Cloud Infrastructure</h4>
-                <p><strong>OCI AI Associate (Batch of 2025 - C45)</strong></p>
-                <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 10px;">Architecting, deploying, and managing scalable machine learning & AI workflows on Oracle Cloud.</p>
+                <div class="verified-badge">✓ Verified & Completed</div>
+                <h4><span class="cred-logo oracle-red">ORACLE</span> Certification</h4>
+                <p><strong>Age 16 Milestone</strong></p>
+                <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 10px;">Achieved Oracle certification, marking an essential foundational milestone in core computer technology and professional computing frameworks.</p>
             </div>
         </div>
     </section>
 
     <section id="projects">
-        <h2>Engineering & Ventures</h2>
+        <h2>Engineering, Robotics & Ventures</h2>
         
         <div class="filter-bar">
-            <button class="filter-btn active" data-filter="all">All Projects</button>
-            <button class="filter-btn" data-filter="ai">AI & ML</button>
-            <button class="filter-btn" data-filter="cloud">Cloud & Infra</button>
-            <button class="filter-btn" data-filter="business">Ventures & Media</button>
+            <button class="filter-btn active" data-filter="all">All Systems</button>
+            <button class="filter-btn" data-filter="hardware">Robotics & Hardware</button>
+            <button class="filter-btn" data-filter="ai">AI & Automation</button>
+            <button class="filter-btn" data-filter="business">Brands & Ventures</button>
         </div>
 
         <div class="grid">
+            <div class="card tilt-card" data-category="hardware">
+                <div class="verified-badge">✓ Verified & Completed</div>
+                <h3>🤖 Titan Bot (Voice Robot)</h3>
+                <p>Voice-controlled bipedal robot built using ESP32 DevKit V1 microcontrollers, TB6612FNG dual-motor drivers, and browser Web Speech & Bluetooth APIs.</p>
+                <div class="tag-container">
+                    <span class="tag">ESP32</span>
+                    <span class="tag">Robotics</span>
+                    <span class="tag">C++ Firmware</span>
+                </div>
+            </div>
+
             <div class="card tilt-card" data-category="ai">
-                <h3>Tossey (AI Voice Assistant)</h3>
-                <p>An advanced, voice-controlled AI assistant powered by a custom thinking model and Emotion Model Adv 3. Features 3rd-gen voice control with 68+ language translation capabilities.</p>
+                <div class="verified-badge">✓ Verified & Completed</div>
+                <h3>🐍 Browser Automation & OSINT</h3>
+                <p>High-speed data parsing and record enumeration pipelines engineered using asynchronous Python Playwright and Selenium drivers in Linux environments.</p>
                 <div class="tag-container">
-                    <span class="tag">AI/ML</span>
-                    <span class="tag">Voice Gen 3</span>
-                    <span class="tag">NLP</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">Playwright</span>
+                    <span class="tag">OSINT</span>
                 </div>
             </div>
 
-            <div class="card tilt-card" data-category="cloud">
-                <h3>Segmental AI Unit 9</h3>
-                <p>Engineered the foundational base infrastructure for Segmental AI Unit 9 during work with Oracle C45 (Batch of 2025), focusing on optimized data pipelines and cloud compute efficiency.</p>
+            <div class="card tilt-card" data-category="ai">
+                <div class="verified-badge">✓ Verified & Completed</div>
+                <h3>⚡ Jarvis AI Assistant Core</h3>
+                <p>Offline-capable conversational AI assistant framework designed to bridge local LLM capabilities with physical hardware trigger bindings and task automation hooks.</p>
                 <div class="tag-container">
-                    <span class="tag">Oracle Cloud</span>
-                    <span class="tag">Infrastructure</span>
-                    <span class="tag">Segmental AI</span>
-                </div>
-            </div>
-
-            <div class="card tilt-card" data-category="business">
-                <h3>Founder @ MortalSMM</h3>
-                <p>Founder and lead architect of mortalsmm.in, delivering scalable digital growth infrastructure, SMM panel architectures, and custom domain integrations.</p>
-                <div class="tag-container">
-                    <span class="tag">Entrepreneurship</span>
-                    <span class="tag">Web Architecture</span>
-                    <span class="tag">SMM</span>
+                    <span class="tag">AI Voice UI</span>
+                    <span class="tag">Automation</span>
+                    <span class="tag">Local LLM</span>
                 </div>
             </div>
 
             <div class="card tilt-card" data-category="business">
-                <h3>@mr_marco.07</h3>
-                <p>Creator and brand director of the @mr_marco.07 digital platform on Instagram, leading creative content strategy and audience engagement.</p>
+                <div class="verified-badge">✓ Verified & Completed</div>
+                <h3>🛒 E-Commerce & Brand Concepts</h3>
+                <p>Modular storefront architectures and branding frameworks developed across digital ventures including NexQuirk, ZorvaTech, and Horizon Tick.</p>
                 <div class="tag-container">
-                    <span class="tag">Digital Brand</span>
-                    <span class="tag">Content Strategy</span>
-                    <span class="tag">Media</span>
+                    <span class="tag">Shopify</span>
+                    <span class="tag">E-Commerce</span>
+                    <span class="tag">Branding</span>
+                </div>
+            </div>
+
+            <div class="card tilt-card" data-category="business">
+                <div class="verified-badge">✓ Verified & Completed</div>
+                <h3>📸 Creator Identity (@mr_marco.07)</h3>
+                <p>Public-facing creator account focused on automotive content, cars, automotive art, and driving culture with a history of significant audience reach.</p>
+                <div class="tag-container">
+                    <span class="tag">Instagram Creator</span>
+                    <span class="tag">Automotive</span>
+                    <span class="tag">Content Scaling</span>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="contact">
-        <h2>Let's Collaborate</h2>
+        <h2>Network Uplinks & Collaboration</h2>
         <div class="contact-container">
             <div class="contact-info">
-                <p>Have an ambitious AI project, cloud infrastructure challenge, or partnership in mind? Feel free to reach out directly.</p>
+                <p>Interested in my robotics projects, automation scripts, or digital ventures? Connect with me directly through my verified handles.</p>
                 <div class="contact-methods">
                     <div class="contact-item">
-                        <span>🌐 Venture: <strong>mortalsmm.in</strong></span>
-                        <button class="copy-btn" onclick="copyText('mortalsmm.in')">Copy</button>
+                        <span>🐙 GitHub Profile: <strong>Arch-Anas-7</strong></span>
+                        <button class="copy-btn" onclick="copyText('https://github.com/Arch-Anas-7')">Copy</button>
                     </div>
                     <div class="contact-item">
-                        <span>📸 Instagram: <strong>@mr_marco.07</strong></span>
+                        <span>📸 Creator Account: <strong>@mr_marco.07</strong></span>
                         <button class="copy-btn" onclick="copyText('@mr_marco.07')">Copy</button>
                     </div>
                     <div class="contact-item">
-                        <span>🐙 GitHub: <strong>Arch-Anas-7</strong></span>
-                        <button class="copy-btn" onclick="copyText('Arch-Anas-7')">Copy</button>
+                        <span>🔒 Personal Profile: <strong>@bruce_wayynnn</strong></span>
+                        <button class="copy-btn" onclick="copyText('@bruce_wayynnn')">Copy</button>
                     </div>
                 </div>
             </div>
@@ -629,15 +689,15 @@
                     <span class="dot yellow"></span>
                     <span class="dot green"></span>
                 </div>
-                <span style="font-size:0.8rem; color:#94a3b8;">syed-anas-cli v1.0</span>
+                <span style="font-size:0.8rem; color:#7f9ebc;">bruce-wayne-cli v4.0</span>
             </div>
             <div class="terminal-body" id="terminal-body">
                 <div class="terminal-output" id="terminal-output">
-                    <p>Welcome to Syed Anas Hussaini's Terminal CLI.</p>
-                    <p>Type <span style="color:#3b82f6;">'help'</span> to view available commands.</p>
+                    <p>Welcome to Mr Anas // Bruce Wayne's Neural CLI.</p>
+                    <p>Type <span style="color:#00f0ff;">'help'</span> to view available system commands.</p>
                 </div>
                 <div class="terminal-input-line">
-                    <span style="color:#10b981;">visitor@anas-portfolio:~\$</span>
+                    <span style="color:#00ff66;">root@bruce-wayne:~$</span>
                     <input type="text" id="terminal-input" autofocus autocomplete="off">
                 </div>
             </div>
@@ -671,7 +731,7 @@
         });
 
         document.querySelectorAll('a, button, .card').forEach(el => {
-            el.addEventListener('mouseenter', () => playBeep(800, 0.03));
+            el.addEventListener('mouseenter', () => playBeep(850, 0.03));
         });
 
         // --- 2. CUSTOM CURSOR & SCROLL PROGRESS ---
@@ -700,10 +760,10 @@
         function copyText(text) {
             navigator.clipboard.writeText(text);
             playBeep(1000, 0.1);
-            showToast('Copied: ' + text);
+            showToast('Copied to clipboard: ' + text);
         }
 
-        // --- 4. PROJECT CATEGORY FILTER ---
+        // --- 4. CATEGORY FILTER ---
         const filterBtns = document.querySelectorAll('.filter-btn');
         const projectCards = document.querySelectorAll('#projects .card');
 
@@ -735,14 +795,14 @@
                 document.querySelectorAll('.number').forEach(num => {
                     const target = +num.getAttribute('data-target');
                     let count = 0;
-                    const inc = target / 30;
+                    const inc = target / 20;
                     const update = () => {
                         count += inc;
                         if (count < target) {
-                            num.innerText = Math.ceil(count) + (target === 99 ? '%' : '+');
+                            num.innerText = Math.ceil(count) + (target === 100 ? '%' : '');
                             setTimeout(update, 40);
                         } else {
-                            num.innerText = target + (target === 99 ? '%' : '+');
+                            num.innerText = target + (target === 100 ? '%' : '');
                         }
                     };
                     update();
@@ -756,8 +816,8 @@
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
-                const rotateX = ((y - rect.height/2) / (rect.height/2)) * -12;
-                const rotateY = ((x - rect.width/2) / (rect.width/2)) * 12;
+                const rotateX = ((y - rect.height/2) / (rect.height/2)) * -10;
+                const rotateY = ((x - rect.width/2) / (rect.width/2)) * 10;
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
             });
             card.addEventListener('mouseleave', () => {
@@ -781,9 +841,9 @@
             constructor() {
                 this.x = Math.random() * width;
                 this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 0.8;
-                this.vy = (Math.random() - 0.5) * 0.8;
-                this.size = Math.random() * 2;
+                this.vx = (Math.random() - 0.5) * 0.6;
+                this.vy = (Math.random() - 0.5) * 0.6;
+                this.size = Math.random() * 1.5;
             }
             update() {
                 this.x += this.vx; this.y += this.vy;
@@ -791,13 +851,13 @@
                 if (this.y < 0 || this.y > height) this.vy *= -1;
             }
             draw() {
-                ctx.fillStyle = 'rgba(59, 130, 246, 0.5)';
+                ctx.fillStyle = 'rgba(0, 240, 255, 0.4)';
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
             }
         }
-        for (let i = 0; i < 70; i++) particles.push(new Particle());
+        for (let i = 0; i < 60; i++) particles.push(new Particle());
 
         function animate() {
             ctx.clearRect(0, 0, width, height);
@@ -807,9 +867,9 @@
                     const dx = particles[i].x - particles[j].x;
                     const dy = particles[i].y - particles[j].y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 110) {
+                    if (dist < 100) {
                         ctx.beginPath();
-                        ctx.strokeStyle = `rgba(59, 130, 246, ${0.18 - dist/600})`;
+                        ctx.strokeStyle = `rgba(0, 240, 255, ${0.15 - dist/500})`;
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
                         ctx.stroke();
@@ -850,25 +910,23 @@
                 playBeep(900, 0.05);
 
                 const line = document.createElement('p');
-                line.innerHTML = `<span style="color:#10b981;">visitor@anas-portfolio:~$</span> ${cmd}`;
+                line.innerHTML = `<span style="color:#00ff66;">root@bruce-wayne:~$</span> ${cmd}`;
                 termOutput.appendChild(line);
 
                 let resp = '';
                 if (cmd === 'help') {
-                    resp = 'Available commands: <br>• <strong>skills</strong> - List tech stack<br>• <strong>projects</strong> - View active projects<br>• <strong>contact</strong> - Show contact handles<br>• <strong>clear</strong> - Clear screen<br>• <strong>matrix</strong> - Enter green glow mode';
+                    resp = 'Available commands: <br>• <strong>whoami</strong> - Operative bio<br>• <strong>skills</strong> - Tech stack & certs<br>• <strong>projects</strong> - View robotics & AI systems<br>• <strong>contact</strong> - Social uplinks<br>• <strong>clear</strong> - Clear console';
+                } else if (cmd === 'whoami') {
+                    resp = 'Mr Anas (aka Bruce Wayne) — 17yo Builder, Developer & Tech Entrepreneur from Hyderabad, India.';
                 } else if (cmd === 'skills') {
-                    resp = 'Languages & Frameworks: C, Python, JavaScript, HTML5/CSS3<br>Cloud & Infra: Oracle Cloud Infrastructure (OCI), Segmental AI, GitHub Pages';
+                    resp = 'Certifications: Harvard CS50x, Oracle Certification<br>Tech Stack: Python, Playwright, ESP32 Robotics, Linux, Shopify E-Commerce';
                 } else if (cmd === 'projects') {
-                    resp = '1. Tossey AI Voice Assistant (68+ Languages)<br>2. Segmental AI Unit 9 (OCI)<br>3. MortalSMM Venture (mortalsmm.in)<br>4. @mr_marco.07 Digital Brand';
+                    resp = '1. Titan Bot (ESP32 Voice Robot)<br>2. Browser Automation & OSINT Engine<br>3. Jarvis AI Assistant Core<br>4. E-Commerce Ventures (NexQuirk, ZorvaTech)';
                 } else if (cmd === 'contact') {
-                    resp = 'Venture: mortalsmm.in | Instagram: @mr_marco.07 | GitHub: Arch-Anas-7';
+                    resp = 'GitHub: Arch-Anas-7 | Creator IG: @mr_marco.07 | Personal IG: @bruce_wayynnn';
                 } else if (cmd === 'clear') {
                     termOutput.innerHTML = '';
                     return;
-                } else if (cmd === 'matrix') {
-                    document.documentElement.style.setProperty('--accent', '#10b981');
-                    document.documentElement.style.setProperty('--accent-glow', 'rgba(16, 185, 129, 0.4)');
-                    resp = 'Matrix mode activated! Accent accent switched to Neon Green.';
                 } else {
                     resp = `Command not recognized: '${cmd}'. Type 'help' for options.`;
                 }
